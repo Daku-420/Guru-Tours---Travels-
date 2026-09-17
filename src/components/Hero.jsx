@@ -19,10 +19,18 @@ export default function Hero({ onOpenPlanTrip }) {
     "Jim Corbett Tiger Safari",
   ];
 
-  const scrollToNext = () => {
+  const scrollToNext = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
     const el = document.getElementById('packages');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const nav = document.querySelector('header');
+      const navHeight = nav ? nav.offsetHeight + 10 : 80;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: 'smooth'
+      });
     } else {
       window.scrollBy({ top: window.innerHeight * 0.85, behavior: 'smooth' });
     }

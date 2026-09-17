@@ -383,6 +383,21 @@
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  const scrollToPackages = () => {
+    const packagesSection = document.getElementById('packages');
+    if (packagesSection) {
+      const navHeader = document.getElementById('navbar-header');
+      const navOffset = navHeader ? navHeader.offsetHeight + 10 : 75;
+      const targetY = packagesSection.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({
+        top: Math.max(0, targetY),
+        behavior: 'smooth'
+      });
+    } else {
+      window.scrollBy({ top: window.innerHeight * 0.85, behavior: 'smooth' });
+    }
+  };
+
   // ---------------------------------------------------------------------------
   // 3. Render Packages
   // ---------------------------------------------------------------------------
@@ -834,6 +849,15 @@
         openPlanTripModal();
       });
     });
+
+    // Hero Scroll Down Button
+    const heroScrollBtn = document.getElementById('hero-scroll-down-btn');
+    if (heroScrollBtn) {
+      heroScrollBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        scrollToPackages();
+      });
+    }
 
     // Hero Quick Search Form Submission
     const heroSearchForm = document.getElementById('hero-search-form');
