@@ -263,8 +263,24 @@
         </button>
       </div>
 
-      <!-- Filter Pills -->
+      <!-- Controls Bar: Live Search & Category Filter Pills -->
       <div class="filter-bar">
+        <div class="packages-search-box">
+          <svg class="search-box-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input
+            type="text"
+            id="packages-search-input"
+            class="packages-search-input"
+            placeholder="Search destination, tour, or activity (e.g., Kedarnath, Trek)..."
+            aria-label="Search tour packages"
+          >
+          <button type="button" id="packages-search-clear" class="packages-search-clear" aria-label="Clear search query" style="display: none;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
         <div class="filter-pills" role="tablist" aria-label="Filter tour packages by theme">
           <button type="button" role="tab" aria-selected="true" class="filter-pill active" data-category="All">All Packages (8)</button>
           <button type="button" role="tab" aria-selected="false" class="filter-pill" data-category="Spiritual">Spiritual</button>

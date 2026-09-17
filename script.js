@@ -387,14 +387,70 @@
   // 3. Render Packages
   // ---------------------------------------------------------------------------
   let activeCategory = 'All';
+  let searchQuery = '';
+
+  const escapeHtml = (str) => {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  };
 
   const renderPackages = () => {
     const grid = document.getElementById('packages-grid');
     if (!grid) return;
 
-    const filtered = activeCategory === 'All'
-      ? siteData.packages
-      : siteData.packages.filter(p => p.category.toLowerCase() === activeCategory.toLowerCase());
+    const q = searchQuery.trim().toLowerCase();
+
+    const filtered = siteData.packages.filter(pkg => {
+      const matchCat = activeCategory === 'All' || pkg.category.toLowerCase() === activeCategory.toLowerCase();
+      if (!matchCat) return false;
+      if (!q) return true;
+      return (
+        pkg.name.toLowerCase().includes(q) ||
+        pkg.destination.toLowerCase().includes(q) ||
+        pkg.category.toLowerCase().includes(q) ||
+        pkg.description.toLowerCase().includes(q) ||
+        (pkg.highlights && pkg.highlights.some(h => h.toLowerCase().includes(q)))
+      );
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div class="packages-no-results">
+          <div class="no-results-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <h3 class="no-results-title">No matching packages found</h3>
+          <p class="no-results-text">We couldn't find any journeys matching "<strong>${escapeHtml(searchQuery)}</strong>". Try searching for another destination or reset filters.</p>
+          <button type="button" id="btn-reset-filters" class="btn btn-primary btn-sm">
+            <span>Reset Search & Filters</span>
+          </button>
+        </div>
+      `;
+
+      document.getElementById('btn-reset-filters')?.addEventListener('click', () => {
+        searchQuery = '';
+        activeCategory = 'All';
+        const searchInput = document.getElementById('packages-search-input');
+        if (searchInput) searchInput.value = '';
+        const clearBtn = document.getElementById('packages-search-clear');
+        if (clearBtn) clearBtn.style.display = 'none';
+
+        document.querySelectorAll('.filter-pill').forEach(b => {
+          const isAll = b.getAttribute('data-category') === 'All';
+          b.classList.toggle('active', isAll);
+          b.setAttribute('aria-selected', isAll ? 'true' : 'false');
+        });
+
+        renderPackages();
+      });
+      return;
+    }
 
     grid.innerHTML = filtered.map(pkg => `
       <article class="pkg-card" data-id="${pkg.id}">
@@ -655,6 +711,32 @@
     renderDestinations();
     renderFAQs();
 
+    // Setup Packages Live Search Bar
+    const packagesSearchInput = document.getElementById('packages-search-input');
+    const packagesSearchClear = document.getElementById('packages-search-clear');
+
+    if (packagesSearchInput) {
+      packagesSearchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        if (packagesSearchClear) {
+          packagesSearchClear.style.display = searchQuery ? 'flex' : 'none';
+        }
+        renderPackages();
+      });
+    }
+
+    if (packagesSearchClear) {
+      packagesSearchClear.addEventListener('click', () => {
+        searchQuery = '';
+        if (packagesSearchInput) {
+          packagesSearchInput.value = '';
+          packagesSearchInput.focus();
+        }
+        packagesSearchClear.style.display = 'none';
+        renderPackages();
+      });
+    }
+
     // Setup Category Filter Pills
     document.querySelectorAll('.filter-pill').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -763,7 +845,15 @@
         const travellers = document.getElementById('search-travellers')?.value;
 
         if (dest) {
-          openPlanTripModal(dest);
+          const searchInput = document.getElementById('packages-search-input');
+          const clearBtn = document.getElementById('packages-search-clear');
+          if (searchInput) {
+            searchInput.value = dest;
+            searchQuery = dest;
+            if (clearBtn) clearBtn.style.display = 'flex';
+          }
+          renderPackages();
+          scrollToPackages();
         } else {
           scrollToPackages();
         }
