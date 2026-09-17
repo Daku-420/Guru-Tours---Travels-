@@ -703,22 +703,7 @@
   };
 
   // ---------------------------------------------------------------------------
-  // 7. Scroll Down Helper (Smooth Scrolling to Packages)
-  // ---------------------------------------------------------------------------
-  const scrollToPackages = () => {
-    const target = document.getElementById('packages');
-    if (target) {
-      const navHeight = document.querySelector('.navbar-header')?.offsetHeight || 72;
-      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-      window.scrollTo({
-        top: targetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  // ---------------------------------------------------------------------------
-  // 8. Event Listeners & Initialization
+  // 7. Event Listeners & Initialization
   // ---------------------------------------------------------------------------
   const initApp = () => {
     // Render dynamic sections
@@ -849,15 +834,6 @@
         openPlanTripModal();
       });
     });
-
-    // Hero Scroll Down Button
-    const heroScrollBtn = document.getElementById('hero-scroll-down-btn');
-    if (heroScrollBtn) {
-      heroScrollBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        scrollToPackages();
-      });
-    }
 
     // Hero Quick Search Form Submission
     const heroSearchForm = document.getElementById('hero-search-form');

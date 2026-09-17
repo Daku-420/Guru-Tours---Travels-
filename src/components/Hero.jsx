@@ -227,11 +227,11 @@ export default function Hero({ onOpenPlanTrip }) {
 
         {/* Scroll Down Indicator Button */}
         <div className="flex flex-col items-center justify-center pt-6 pb-2">
-          <button
-            type="button"
+          <a
+            href="#packages"
             onClick={scrollToNext}
             aria-label="Scroll down to explore tour packages"
-            className="group inline-flex flex-col items-center gap-1.5 text-white/80 hover:text-white transition-all cursor-pointer focus:outline-none"
+            className="group inline-flex flex-col items-center gap-1.5 text-white/80 hover:text-white transition-all cursor-pointer focus:outline-none no-underline"
           >
             <span className="text-[10px] sm:text-[11px] font-bold tracking-widest uppercase text-gray-300 group-hover:text-brand-red transition-colors">
               Scroll Down
@@ -239,7 +239,7 @@ export default function Hero({ onOpenPlanTrip }) {
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/30 bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:border-brand-red group-hover:bg-brand-red/25 shadow-lg group-hover:shadow-brand-red/30 transition-all duration-300 animate-bounce">
               <ChevronDown className="w-4 h-4 text-white group-hover:text-brand-red transition-colors" />
             </div>
-          </button>
+          </a>
         </div>
       </div>
     </section>

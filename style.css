@@ -761,6 +761,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 0.4rem;
   color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
   transition: all var(--transition-fast);
   outline: none;
 }
