@@ -78,7 +78,6 @@ html {
   color: var(--color-text-main);
   background-color: #ffffff;
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
