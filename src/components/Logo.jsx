@@ -97,13 +97,13 @@ export default function Logo({
       <div className="flex flex-col justify-center text-left leading-none">
         <div className="flex items-baseline gap-1.5 whitespace-nowrap">
           <span 
-            className="font-heading font-black text-xl sm:text-2xl tracking-wider" 
+            className="font-logo font-black text-xl sm:text-2xl tracking-wider" 
             style={{ color: '#D71920' }}
           >
             GURU
           </span>
           <span 
-            className="font-heading font-extrabold text-xs sm:text-sm tracking-widest uppercase transition-colors"
+            className="font-logo font-extrabold text-xs sm:text-sm tracking-widest uppercase transition-colors"
             style={{ color: subtitleColor }}
           >
             TOURS & TRAVELS

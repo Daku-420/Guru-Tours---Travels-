@@ -19,8 +19,11 @@ export default {
         },
       },
       fontFamily: {
-        heading: ['Outfit', 'sans-serif'],
-        sans: ['Inter', 'sans-serif'],
+        heading: ['"Playfair Display"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        body: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        logo: ['"Outfit"', 'sans-serif'],
       },
       boxShadow: {
         'premium': '0 10px 30px -5px rgba(32, 37, 43, 0.08), 0 4px 6px -2px rgba(32, 37, 43, 0.04)',
