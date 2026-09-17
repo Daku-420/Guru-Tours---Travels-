@@ -92,15 +92,12 @@ export default function Navbar({ onOpenPlanTrip }) {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`p-2.5 rounded-full transition-colors flex items-center justify-center shrink-0 ${
-                isScrolled
-                  ? 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200'
-                  : 'bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 border border-emerald-400/40 backdrop-blur-sm'
-              }`}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap shrink-0 border border-white/25"
               title="Chat with our Trip Expert on WhatsApp"
-              aria-label="WhatsApp Enquiry"
+              aria-label="Chat with Tour Specialist on WhatsApp"
             >
-              <WhatsAppIcon className="w-4 h-4 fill-current" />
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
+              <span>WhatsApp</span>
             </a>
 
             {/* Direct Call Button */}
@@ -129,6 +126,16 @@ export default function Navbar({ onOpenPlanTrip }) {
 
           {/* Mobile & Tablet Trigger */}
           <div className="flex items-center gap-2 xl:hidden">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-[#25D366] text-white shadow-sm flex items-center justify-center shrink-0 border border-white/20"
+              title="Chat on WhatsApp"
+              aria-label="Chat on WhatsApp"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
+            </a>
             <button
               onClick={onOpenPlanTrip}
               className="px-3 py-1.5 rounded-full bg-brand-red text-white text-xs font-bold shadow-sm md:hidden whitespace-nowrap"
