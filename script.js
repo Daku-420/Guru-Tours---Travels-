@@ -394,7 +394,7 @@
         behavior: 'smooth'
       });
     } else {
-      window.scrollBy({ top: window.innerHeight * 0.85, behavior: 'smooth' });
+      window.location.href = './packages.html';
     }
   };
 
