@@ -110,13 +110,17 @@ function AppContent() {
           href={whatsappFloatingUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xl hover:scale-105 transition-all group border-2 border-white/40"
+          className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white shadow-[0_8px_25px_rgba(37,211,102,0.45)] hover:shadow-[0_12px_32px_rgba(37,211,102,0.6)] hover:scale-105 active:scale-95 transition-all group border-2 border-white/50 relative"
           aria-label="Chat on WhatsApp"
-          title="Chat with trip expert on WhatsApp"
+          title="Chat with our Tour Specialist on WhatsApp"
         >
-          <WhatsAppIcon className="w-5 h-5 fill-current" />
-          <span className="text-xs font-bold tracking-wide">
-            WhatsApp Us
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-80"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+          </span>
+          <WhatsAppIcon className="w-5 h-5 fill-white" />
+          <span className="text-xs sm:text-sm font-bold tracking-wide">
+            Chat on WhatsApp
           </span>
         </a>
       </div>

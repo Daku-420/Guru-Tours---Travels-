@@ -1885,26 +1885,84 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 2rem;
   right: 2rem;
   z-index: 90;
-  width: 58px;
-  height: 58px;
+  height: 52px;
+  padding: 0 1.25rem 0 0.95rem;
   background-color: var(--color-whatsapp);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
+  border: 2px solid rgba(255, 255, 255, 0.45);
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.65rem;
   color: #ffffff;
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
 }
 
 .floating-whatsapp:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+  background-color: #20ba59;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+  color: #ffffff;
 }
 
-.floating-whatsapp svg {
-  width: 32px;
-  height: 32px;
+.floating-whatsapp:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.floating-whatsapp .whatsapp-icon {
+  width: 26px;
+  height: 26px;
+  fill: #ffffff;
+  flex-shrink: 0;
+}
+
+.floating-whatsapp-text {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.whatsapp-pulse-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-whatsapp);
+  opacity: 0;
+  animation: whatsapp-radar-pulse 2.5s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.whatsapp-online-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 0 6px #ffffff;
+  flex-shrink: 0;
+}
+
+@keyframes whatsapp-radar-pulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.8;
+  }
+  60% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 0;
+  }
 }
 
 .back-to-top {
@@ -2065,8 +2123,16 @@ h1, h2, h3, h4, h5, h6 {
   .floating-whatsapp {
     bottom: 1.25rem;
     right: 1.25rem;
-    width: 50px;
-    height: 50px;
+    height: 46px;
+    padding: 0 0.95rem 0 0.75rem;
+    gap: 0.5rem;
+  }
+  .floating-whatsapp .whatsapp-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .floating-whatsapp-text {
+    font-size: 0.78rem;
   }
   .back-to-top {
     bottom: 1.25rem;
