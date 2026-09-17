@@ -658,8 +658,12 @@
     // Setup Category Filter Pills
     document.querySelectorAll('.filter-pill').forEach(btn => {
       btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.filter-pill').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
         e.currentTarget.classList.add('active');
+        e.currentTarget.setAttribute('aria-selected', 'true');
         activeCategory = e.currentTarget.getAttribute('data-category') || 'All';
         renderPackages();
       });
